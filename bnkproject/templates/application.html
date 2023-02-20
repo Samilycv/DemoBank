@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Application Form</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <table style= "width: 400px">
+    {{ form.as_table }}
+
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#id_district').change(function(){
+        var district = $(this).val();
+        $.ajax({
+          url: {% url "get_branches" %},
+          data: {
+            'district': district
+          },
+          dataType: 'html',
+          success: function(data){
+            $('#id_branch').html(data);
+          }
+        });
+      });
+    });
+  </script>
+
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#id_district').change(function(){
+        var district = $(this).val();
+        $.ajax({
+          url: '{% url "get_branches" %}',
+          data: {
+            'district': district
+          },
+          dataType: 'html',
+          success: function(data){
+            $('#id_branch').html(data);
+          }
+        });
+      });
+    });
+  </script>
+{% endblock %}

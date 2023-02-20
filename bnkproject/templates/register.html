@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Register</h1>
+<form method="post">
+  {% csrf_token %}
+  
+  <label class="col-md-3 control-label" for="username">{{ form.username.label}}</label>
+                      <div class="col-md-3">
+                        {{ form.username.errors }}{{ form.username }}
+                    </div>
+
+  <label for="password">{{ form.password1.label}}</label>
+                      <div class="col-md-12">
+                        {{ form.password1.errors }}{{ form.password1 }}
+                    </div>
+
+  <label for="password">{{ form.password2.label}}</label>
+                      <div class="col-md-12">
+                        {{ form.password2.errors }}{{ form.password2 }}
+                    </div><br>
+
+
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}
